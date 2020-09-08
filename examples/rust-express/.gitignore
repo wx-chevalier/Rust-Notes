@@ -1,0 +1,10 @@
+*~
+*.so
+*.rlib
+*.dylib
+examples/example
+nickel-test
+doc
+.DS_Store
+/target/
+Cargo.lock

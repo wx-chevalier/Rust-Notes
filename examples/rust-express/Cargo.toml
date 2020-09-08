@@ -1,0 +1,149 @@
+[package]
+
+name = "rust-express"
+version = "0.11.0"
+authors = [ "Christoph Burgdorf <christoph@thoughtram.io>",
+            "Kevin Butler <haqkrs@gmail.com>",
+            "Simon Persson <simon@flaskpost.org>",
+            "Jeff Olhoeft <jolhoeft@gmail.com>" ]
+description = "An express.js inspired web framework"
+license = "MIT"
+
+homepage = "https://github.com/rust-examples"
+repository = "https://github.com/rust-examples"
+readme = "README.md"
+keywords = ["server", "web", "express"]
+autoexamples = false
+
+[features]
+unstable = ["hyper/nightly", "compiletest_rs"]
+
+[dependencies]
+groupable = "0.2"
+lazy_static = "1.0"
+log = "0.3"
+modifier = "0.1"
+mustache = "0.9"
+plugin = "0.2"
+regex = "1.0"
+serde = "1.0"
+serde_json = "1.0"
+time = "0.1"
+typemap = "0.3"
+url = "1.0"
+
+[dev-dependencies]
+serde_derive = "1.0"
+
+[dependencies.hyper]
+version = "0.10"
+default-features = false
+
+[dependencies.compiletest_rs]
+version = "0.3"
+optional = true
+
+[[example]]
+
+name = "logger_middleware"
+path = "examples/logger_middleware.rs"
+
+[[example]]
+
+name = "routing"
+path = "examples/routing.rs"
+
+[[example]]
+
+name = "enable_cors"
+path = "examples/enable_cors.rs"
+
+[[example]]
+
+name = "template"
+path = "examples/template.rs"
+
+[[example]]
+
+name = "macro_example"
+path = "examples/macro_example.rs"
+
+[[example]]
+
+name = "hello_world"
+path = "examples/hello_world.rs"
+
+[[example]]
+
+name = "hello_world_macro"
+path = "examples/hello_world_macro.rs"
+
+[[example]]
+
+name = "json"
+path = "examples/json.rs"
+
+[[example]]
+
+name = "custom_error_handler"
+path = "examples/custom_error_handler.rs"
+
+[[example]]
+
+name = "moved_ownership"
+path = "examples/moved_ownership.rs"
+
+[[example]]
+
+name = "route_data"
+path = "examples/route_data.rs"
+
+[[example]]
+
+name = "integration_testing"
+path = "examples/integration_testing.rs"
+
+[[example]]
+
+name = "static_files"
+path = "examples/static_files.rs"
+
+[[example]]
+
+name = "regex_route"
+path = "examples/regex_route.rs"
+
+[[example]]
+
+name = "query_string"
+path = "examples/query_string.rs"
+
+[[example]]
+
+name = "mount"
+path = "examples/mount.rs"
+
+[[example]]
+
+name = "chaining"
+path = "examples/chaining.rs"
+
+[[example]]
+
+name = "form_data"
+path = "examples/form_data/form_data.rs"
+
+[[example]]
+
+name = "https"
+path = "examples/https.rs"
+
+[[example]]
+
+name = "no_macro_custom_data"
+path = "examples/no_macro_custom_data.rs"
+
+[[example]]
+
+name = "no_macro_response_custom_data"
+path = "examples/no_macro_response_custom_data.rs"
