@@ -247,7 +247,7 @@ fn and_then<F, T, A>(option: Option<T>, f: F) -> Option<A>
 }
 ```
 
-看起来`and_then`和`map`差不多，不过`map`只是把值为`Some(t)`重新映射了一遍，`and_then`则会返回另一个`Option`。如果我们在一个文件路径中找到它的扩展名，这时候就会变得尤为重要：
+看起来 `and_then` 和 `map` 差不多，不过 `map` 只是把值为 `Some(t)` 重新映射了一遍，`and_then` 则会返回另一个 `Option`。如果我们在一个文件路径中找到它的扩展名，这时候就会变得尤为重要：
 
 ```rust
 use std::path::Path;
