@@ -95,6 +95,29 @@ fn main() {
 
 ## 无效的数组元素访问
 
+如果我们访问数组结尾之后的元素会发生什么呢？比如你将上面的例子改成下面这样，这可以编译通过，不过在运行时会因错误而退出：
+
+```rs
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+    let index = 10;
+
+    let element = a[index];
+
+    println!("The value of element is: {}", element);
+}
+
+$ cargo run
+   Compiling arrays v0.1.0 (file:///projects/arrays)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.31 secs
+     Running `target/debug/arrays`
+thread 'main' panicked at 'index out of bounds: the len is 5 but the index is
+ 10', src/main.rs:5:19
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+```
+
+编译并没有产生任何错误，不过程序会出现一个 运行时（runtime）错误并且不会成功退出。当尝试用索引访问一个元素时，Rust 会检查指定的索引是否小于数组的长度。如果索引超出了数组长度，Rust 会 panic，这是 Rust 术语，它用于程序因为错误而退出的情况。
+
 # 数组切片
 
 Slice 从直观上讲，是对一个 Array 的切片，通过 Slice，你能获取到一个 Array 的部分或者全部的访问权限。和 Array 不同，Slice 是可以动态的，但是呢，其范围是不能超过 Array 的大小，这点和 Golang 是不一样的。一个 Slice 的表达式可以为如下: &[T] 或者 &mut [T]。

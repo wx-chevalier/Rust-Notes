@@ -1,6 +1,6 @@
 # if
 
-If 是分支 (branch) 的一种特殊形式，也可以使用 else 和 else if。 与 C 语言不同的是，逻辑条件不需要用小括号括起来，但是条件后面必须跟一个代码块。 Rust 中的 if 是一个表达式 (expression)，可以赋给一个变量：
+If 是分支 (branch) 的一种特殊形式，也可以使用 else 和 else if。与 C 语言不同的是，逻辑条件不需要用小括号括起来，但是条件后面必须跟一个代码块。Rust 中的 if 是一个表达式 (expression)，可以赋给一个变量：
 
 ```rs
 let x = 5;

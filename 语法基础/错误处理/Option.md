@@ -16,7 +16,7 @@ fn main() {
 // thread 'main' panicked at 'index out of bounds: the len is 2 but the index is 4', src\main.rs:34:5
 ```
 
-Panic 表示程序在问题发生之前已停止。 Rust 看到该函数想要一些不可能的事情，然后停止。它“展开堆栈”（从堆栈中取出值），并告诉您“对不起，我不能这样做”。所以现在我们将返回类型从 i32 更改为`Option<i32>`。这意味着“如果有，请给我 Some（i32），如果没有，请给我任何内容”。我们说 i32 是“包装”在 Option 中的，这意味着它在 Option 内部。您必须做一些事情才能获得价值。
+Panic 表示程序在问题发生之前已停止。Rust 看到该函数想要一些不可能的事情，然后停止。它“展开堆栈”（从堆栈中取出值），并告诉您“对不起，我不能这样做”。所以现在我们将返回类型从 i32 更改为`Option<i32>`。这意味着“如果有，请给我 Some（i32），如果没有，请给我任何内容”。我们说 i32 是“包装”在 Option 中的，这意味着它在 Option 内部。您必须做一些事情才能获得价值。
 
 ```rs
 fn take_fifth(value: Vec<i32>) -> Option<i32> {

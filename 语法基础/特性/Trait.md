@@ -117,7 +117,7 @@ fn bar<T, K>(x: T, y: K)
 
 # 默认方法
 
-定义在特性中的方法称为默认方法 (default method)，可以被该特性的实现覆盖。 此外，特性之间也可以存在继承 (inheritance)：
+定义在特性中的方法称为默认方法 (default method)，可以被该特性的实现覆盖。此外，特性之间也可以存在继承 (inheritance)：
 
 ```rs
 trait Foo {
