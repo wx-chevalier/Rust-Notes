@@ -1,4 +1,4 @@
-# Rust in Action
+# Rust Series（Rust 实践笔记）
 
 Safety at Scale
 

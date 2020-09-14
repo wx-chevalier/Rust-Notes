@@ -16,7 +16,7 @@ enum ThingsInTheSky {
 fn main() { }
 ```
 
-这是一个枚举，因为您可以看到太阳或星星：您必须选择一个。这些称为 variants。
+这是一个枚举，因为您可以看到太阳或星星：您必须选择一个，这些称为 variants。
 
 ```rs
 // create the enum with two choices

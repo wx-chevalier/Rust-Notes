@@ -153,3 +153,51 @@ type := identifier | ''
 count := parameter | integer
 parameter := integer '$'
 ```
+
+# 字符串切片
+
+另一个没有所有权的数据类型是 slice。slice 允许你引用集合中一段连续的元素序列，而不用引用整个集合。字符串 slice（string slice）是 String 中一部分值的引用，它看起来像这样：
+
+```rs
+let s = String::from("hello world");
+
+let hello = &s[0..5];
+let world = &s[6..11];
+```
+
+这类似于引用整个 String 不过带有额外的 [0..5] 部分。它不是对整个 String 的引用，而是对部分 String 的引用。可以使用一个由中括号中的 [starting_index..ending_index] 指定的 range 创建一个 slice，其中 starting_index 是 slice 的第一个位置，ending_index 则是 slice 最后一个位置的后一个值。在其内部，slice 的数据结构存储了 slice 的开始位置和长度，长度对应于 ending_index 减去 starting_index 的值。所以对于 `let world = &s[6..11];` 的情况，world 将是一个包含指向 s 第 7 个字节（从 1 开始）的指针和长度值 5 的 slice。
+
+![引用了部分 String 的字符串 Slice](https://s1.ax1x.com/2020/09/14/wDKG9S.png)
+
+对于 Rust 的 .. range 语法，如果想要从第一个索引（0）开始，可以不写两个点号之前的值。换句话说，如下两个语句是相同的：
+
+```rs
+let s = String::from("hello");
+
+let slice = &s[0..2];
+let slice = &s[..2];
+```
+
+依此类推，如果 slice 包含 String 的最后一个字节，也可以舍弃尾部的数字。这意味着如下也是相同的：
+
+```rs
+let s = String::from("hello");
+
+let len = s.len();
+
+let slice = &s[3..len];
+let slice = &s[3..];
+```
+
+也可以同时舍弃这两个值来获取整个字符串的 slice。所以如下亦是相同的：
+
+```rs
+let s = String::from("hello");
+
+let len = s.len();
+
+let slice = &s[0..len];
+let slice = &s[..];
+```
+
+字符串 slice range 的索引必须位于有效的 UTF-8 字符边界内，如果尝试从一个多字节字符的中间位置创建字符串 slice，则程序将会因错误而退出。
