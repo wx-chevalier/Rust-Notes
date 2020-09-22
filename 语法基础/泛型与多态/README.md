@@ -6,7 +6,7 @@
 
 泛型主要目的是为程序员提供了编程的便利，减少代码的臃肿,同时极大丰富了语言本身的表达能力, 为程序员提供了一个合适的炮管。想想，一个函数，代替了几十个，甚至数百个函数，是一件多么让人兴奋的事情。泛型，可以理解为具有某些功能共性的集合类型，如 i8、i16、u8、f32 等都可以支持 add，甚至两个 struct Point 类型也可以 add 形成一个新的 Point。
 
-# 泛型实例
+# 提取函数来减少重复
 
 在函数中，您写什么类型作为输入：
 
@@ -57,3 +57,88 @@ fn main() {
 ```
 
 因此，单个字母 T 用于人类的眼睛，但函数名后面的部分用于编译器的“眼睛”。没有它，它不是通用的。
+
+## 最大值提取
+
+当熟悉了这个技术以后，我们将使用相同的机制来提取一个泛型函数！如同你识别出可以提取到函数中重复代码那样，你也会开始识别出能够使用泛型的重复代码。
+
+```rs
+// 考虑一下这个寻找列表中最大值的小程序
+fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let mut largest = number_list[0];
+
+    for number in number_list {
+        if number > largest {
+            largest = number;
+        }
+    }
+
+    println!("The largest number is {}", largest);
+}
+```
+
+这段代码获取一个整型列表，存放在变量 number_list 中。它将列表的第一项放入了变量 largest 中。接着遍历了列表中的所有数字，如果当前值大于 largest 中储存的值，将 largest 替换为这个值。如果当前值小于或者等于目前为止的最大值，largest 保持不变。当列表中所有值都被考虑到之后，largest 将会是最大值，在这里也就是 100。
+
+如果需要在两个不同的列表中寻找最大值，我们可以重复上例中的代码，这样程序中就会存在两段相同逻辑的代码，虽然代码能够执行，但是重复的代码是冗余且容易出错的，并且意味着当更新逻辑时需要修改多处地方的代码。为了消除重复，我们可以创建一层抽象，在这个例子中将表现为一个获取任意整型列表作为参数并对其进行处理的函数。这将增加代码的简洁性并让我们将表达和推导寻找列表中最大值的这个概念与使用这个概念的特定位置相互独立。
+
+```rs
+fn largest(list: &[i32]) -> i32 {
+    let mut largest = list[0];
+
+    for &item in list {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let result = largest(&number_list);
+    println!("The largest number is {}", result);
+
+    let number_list = vec![102, 34, 6000, 89, 54, 2, 43, 8];
+
+    let result = largest(&number_list);
+    println!("The largest number is {}", result);
+}
+```
+
+largest 函数有一个参数 list，它代表会传递给函数的任何具体的 i32 值的 slice。函数定义中的 list 代表任何 &[i32]。当调用 largest 函数时，其代码实际上运行于我们传递的特定值上。如果我们有两个函数，一个寻找一个 i32 值的 slice 中的最大项而另一个寻找 char 值的 slice 中的最大项该怎么办？
+
+```rs
+fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
+    let mut largest = list[0];
+
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+
+    largest
+}
+
+fn main() {
+    let number_list = vec![34, 50, 25, 100, 65];
+
+    let result = largest(&number_list);
+    println!("The largest number is {}", result);
+
+    let char_list = vec!['y', 'm', 'a', 'q'];
+
+    let result = largest(&char_list);
+    println!("The largest char is {}", result);
+}
+```
+
+如果想要定义一个 x 和 y 可以有不同类型且仍然是泛型的 Point 结构体，我们可以使用多个泛型类型参数。我们修改 Point 的定义为拥有两个泛型类型 T 和 U。其中字段 x 是 T 类型的，而字段 y 是 U 类型的：
+
+```rs
+
+```
