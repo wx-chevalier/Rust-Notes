@@ -97,7 +97,7 @@ fn main() {
 }
 ```
 
-首先呢， `&*` 是两个符号 `&` 和 `*` 的组合，按照 Rust 的运算顺序，先对 String 进行 Deref,也就是 `*` 操作。由于 String 实现了 `impl Deref<Target=str> for String`，这相当于一个运算符重载，所以你就能通过 `*` 获得一个 str 类型。但是我们知道，单独的 str 是不能在 Rust 里直接存在的，因此，我们需要先给他进行 & 操作取得 &str 这个结果。
+首先呢，`&*` 是两个符号 `&` 和 `*` 的组合，按照 Rust 的运算顺序，先对 String 进行 Deref,也就是 `*` 操作。由于 String 实现了 `impl Deref<Target=str> for String`，这相当于一个运算符重载，所以你就能通过 `*` 获得一个 str 类型。但是我们知道，单独的 str 是不能在 Rust 里直接存在的，因此，我们需要先给他进行 & 操作取得 &str 这个结果。
 
 # 索引访问
 

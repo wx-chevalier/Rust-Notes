@@ -28,7 +28,7 @@ fn value_in_cents(coin: Coin) -> u8 {
 }
 ```
 
-其中 | 用于匹配多个值，...匹配一个范围 (包含最后一个值)，并且 `_` 在这里是必须的， 因为 match 强制进行穷尽性检查 (exhaustiveness checking)，必须覆盖所有的可能值。
+其中 | 用于匹配多个值，...匹配一个范围 (包含最后一个值)，并且 `_` 在这里是必须的，因为 match 强制进行穷尽性检查 (exhaustiveness checking)，必须覆盖所有的可能值。
 
 ## 通配符
 

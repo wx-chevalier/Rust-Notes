@@ -209,7 +209,7 @@ fn main() {
 
 ## map
 
-假如我们要在一个字符串中找到文件的扩展名，比如 foo.rs 中的 rs， 我们可以这样：
+假如我们要在一个字符串中找到文件的扩展名，比如 foo.rs 中的 rs，我们可以这样：
 
 ```rust
 fn extension_explicit(file_name: &str) -> Option<&str> {

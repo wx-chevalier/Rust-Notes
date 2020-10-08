@@ -1,6 +1,6 @@
 # Trait
 
-为了描述类型可以实现的抽象接口 (abstract interface)， Rust 引入了特性 (trait) 来定义函数类型签名 (function type signature)：
+为了描述类型可以实现的抽象接口 (abstract interface)，Rust 引入了特性 (trait) 来定义函数类型签名 (function type signature)：
 
 ```rs
 trait HasArea {
@@ -36,7 +36,7 @@ fn print_area<T: HasArea>(shape: T) {
 }
 ```
 
-其中函数 `print_area()` 中的泛型参数 `T` 被添加了一个名为 `HasArea` 的特性约束 (trait constraint)， 用以确保任何实现了 `HasArea` 的类型将拥有一个 `.area()` 方法。
+其中函数 `print_area()` 中的泛型参数 `T` 被添加了一个名为 `HasArea` 的特性约束 (trait constraint)，用以确保任何实现了 `HasArea` 的类型将拥有一个 `.area()` 方法。
 
 ## Trait 继承
 
@@ -104,7 +104,7 @@ fn bar<T, K>(x: T, y: K)
 
 - 如果一个特性不在当前作用域内，它就不能被实现。
 - 不管是特性还是`impl`，都只能在当前的包装箱内起作用。
-- 带有特性约束的泛型函数使用单态化实现 (monomorphization)， 所以它是静态派分的 (statically dispatched)。
+- 带有特性约束的泛型函数使用单态化实现 (monomorphization)，所以它是静态派分的 (statically dispatched)。
 
 下面列举几个非常有用的标准库特性：
 
@@ -113,7 +113,7 @@ fn bar<T, K>(x: T, y: K)
 - `AsRef`用于在泛型中把一个值转换为引用。
 - `Deref`用于把`&U`类型的值自动转换为`&T`类型。
 - `Iterator`用于在集合 (collection) 和惰性值生成器 (lazy value generator) 上实现迭代器。
-- `Sized`用于标记运行时长度固定的类型，而不定长的切片和特性必须放在指针后面使其运行时长度已知， 比如`&[T]`和`Box`。
+- `Sized`用于标记运行时长度固定的类型，而不定长的切片和特性必须放在指针后面使其运行时长度已知，比如`&[T]`和`Box`。
 
 # 默认方法
 

@@ -164,7 +164,7 @@ macro_rules! try {
 }
 ```
 
-`try!` 事实上就是 `match Result` 的封装，当遇到 `Err(E)` 时会提早返回， `::std::convert::From::from(err)`可以将不同的错误类型返回成最终需要的错误类型，因为所有的错误都能通过 `From` 转化成 `Box`，所以下面的代码是正确的：
+`try!` 事实上就是 `match Result` 的封装，当遇到 `Err(E)` 时会提早返回，`::std::convert::From::from(err)`可以将不同的错误类型返回成最终需要的错误类型，因为所有的错误都能通过 `From` 转化成 `Box`，所以下面的代码是正确的：
 
 ```rust
 use std::error::Error;
