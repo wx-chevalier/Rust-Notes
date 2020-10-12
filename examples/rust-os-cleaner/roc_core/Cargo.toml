@@ -1,0 +1,16 @@
+[package]
+name = "roc_core"
+version = "1.1.0"
+authors = ["wx-chevalier@github"]
+edition = "2018"
+description = "Core of Czkawka app"
+license = "MIT"
+homepage = "https://github.com/wx-chevalier/rust-os-cleaner"
+repository = "https://github.com/wx-chevalier/rust-os-cleaner"
+
+
+[dependencies]
+humansize = "1"
+blake3 = "0.3"
+#rayon = "1"
+crossbeam-channel = "0.4.4"

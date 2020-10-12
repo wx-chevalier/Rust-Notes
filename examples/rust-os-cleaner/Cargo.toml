@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "roc_core",
+    "roc_cli"
+]
