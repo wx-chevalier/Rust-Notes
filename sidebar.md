@@ -3,6 +3,8 @@
       
     - [rust modules](/examples/rust-modules/README.md)
       
+    - [rust os cleaner](/examples/rust-os-cleaner/README.md)
+      
   - 工程实践
     - [GUI](/工程实践/GUI/README.md)
       
