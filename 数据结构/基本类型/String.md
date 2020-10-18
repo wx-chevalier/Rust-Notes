@@ -10,7 +10,7 @@ Rust 有两种主要的字符串类型：String 和 ＆str。有什么区别？
 &str 和 String 都是 UTF-8，譬如：
 
 ```rs
-// Rust 的 string 被表达为： &'static str，所有的用""包裹起来的字符串，都被声明成了一个不可变，静态的字符串。
+// Rust 的 string 被表达为：&'static str，所有的用""包裹起来的字符串，都被声明成了一个不可变，静态的字符串。
 let x = "Hello";
 let x:&'static str = "Hello";
 
