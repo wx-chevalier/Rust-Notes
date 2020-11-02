@@ -1,4 +1,4 @@
-  - examples
+  - [examples](/examples/README.md)
     - [rust express](/examples/rust-express/README.md)
       
     - [rust modules](/examples/rust-modules/README.md)
