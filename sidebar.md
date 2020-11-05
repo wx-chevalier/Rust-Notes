@@ -5,6 +5,48 @@
       
     - [rust os cleaner](/examples/rust-os-cleaner/README.md)
       
+    - [rustlings](/examples/rustlings/README.md)
+      - [CHANGELOG](/examples/rustlings/CHANGELOG.md)
+      - [CONTRIBUTING](/examples/rustlings/CONTRIBUTING.md)
+      - exercises
+        - [clippy](/examples/rustlings/exercises/clippy/README.md)
+          
+        - [conversions](/examples/rustlings/exercises/conversions/README.md)
+          
+        - [enums](/examples/rustlings/exercises/enums/README.md)
+          
+        - [error_handling](/examples/rustlings/exercises/error_handling/README.md)
+          
+        - [functions](/examples/rustlings/exercises/functions/README.md)
+          
+        - [generics](/examples/rustlings/exercises/generics/README.md)
+          
+        - [if](/examples/rustlings/exercises/if/README.md)
+          
+        - [macros](/examples/rustlings/exercises/macros/README.md)
+          
+        - [modules](/examples/rustlings/exercises/modules/README.md)
+          
+        - [move_semantics](/examples/rustlings/exercises/move_semantics/README.md)
+          
+        - [option](/examples/rustlings/exercises/option/README.md)
+          
+        - [primitive_types](/examples/rustlings/exercises/primitive_types/README.md)
+          
+        - [standard_library_types](/examples/rustlings/exercises/standard_library_types/README.md)
+          
+        - [strings](/examples/rustlings/exercises/strings/README.md)
+          
+        - [structs](/examples/rustlings/exercises/structs/README.md)
+          
+        - [tests](/examples/rustlings/exercises/tests/README.md)
+          
+        - [threads](/examples/rustlings/exercises/threads/README.md)
+          
+        - [traits](/examples/rustlings/exercises/traits/README.md)
+          
+        - [variables](/examples/rustlings/exercises/variables/README.md)
+          
   - 工程实践
     - [GUI](/工程实践/GUI/README.md)
       
@@ -45,6 +87,8 @@
       - [Vec](/数据结构/序列类型/Vec.md)
     - [映射类型](/数据结构/映射类型/README.md)
       - [HashMap](/数据结构/映射类型/HashMap.md)
+  - [设计模式](/设计模式/README.md)
+    
   - [语法基础](/语法基础/README.md)
     - [函数](/语法基础/函数/README.md)
       - [函数定义](/语法基础/函数/函数定义.md)
