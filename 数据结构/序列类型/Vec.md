@@ -111,7 +111,7 @@ let a = vec![1, 2, 3];
 assert_eq!(a[1usize], 2);
 ```
 
-那么，Rust 中有没有安全的下标访问机制呢？答案是当然有：—— `.get(n: usize)`（`.get_mut(n: usize)`） 函数。
+那么，Rust 中有没有安全的下标访问机制呢？答案是当然有：—— `.get(n: usize)`（`.get_mut(n: usize)`）函数。
 对于一个数组，这个函数返回一个`Option<&T>` (`Option<&mut T>`)，当 Option==None 的时候，即下标越界，其他情况下，我们能安全的获得一个 Vec 里面元素的引用。
 
 ```rust
