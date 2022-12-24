@@ -94,3 +94,6 @@
       - [7.12.1 Result](/语法基础/错误处理/Result.md)
       - [7.12.2 panic!](/语法基础/错误处理/panic!.md)
       - [7.12.3 处理原则](/语法基础/错误处理/处理原则.md)
+  - 8 .more
+    - [8.1 Comprehensive Rust](/.more/Comprehensive%20Rust/README.md)
+      
