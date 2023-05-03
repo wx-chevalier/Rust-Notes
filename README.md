@@ -12,7 +12,7 @@
   </a>
 
   <p align="center">
-    <a href="https://ng-tech.icu/books/Rust-Series"><strong>在线阅读 >> </strong></a>
+    <a href="https://ng-tech.icu/books/Rust-Notes"><strong>在线阅读 >> </strong></a>
     <br />
     <br />
     <a href="https://github.com/wx-chevalier">代码案例</a>
