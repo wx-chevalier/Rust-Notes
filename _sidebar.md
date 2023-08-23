@@ -43,8 +43,8 @@
       - [1.11.2 操作符](/01~语法基础/语句与操作符/操作符.md)
       - [1.11.3 语句与表达式](/01~语法基础/语句与操作符/语句与表达式.md)
     - [1.12 错误处理 [4]](/01~语法基础/错误处理/README.md)
-      - 1.12.1 99.参考资料 [1]
-        - [1.12.1.1 Modular Errors in Rust](/01~语法基础/错误处理/99.参考资料/2023-Modular%20Errors%20in%20Rust.md)
+      - 1.12.1 99~参考资料 [1]
+        - [1.12.1.1 Modular Errors in Rust](/01~语法基础/错误处理/99~参考资料/2023-Modular%20Errors%20in%20Rust.md)
       - [1.12.2 Result](/01~语法基础/错误处理/Result.md)
       - [1.12.3 panic!](/01~语法基础/错误处理/panic!.md)
       - [1.12.4 处理原则](/01~语法基础/错误处理/处理原则.md)
@@ -95,7 +95,7 @@
   - 6 10.实践案例 [1]
     - [6.1 KV 数据库](/10.实践案例/KV%20数据库/README.md)
       
-  - 7 99.参考资料 [1]
-    - [7.1 Comprehensive Rust](/99.参考资料/Comprehensive%20Rust/README.md)
+  - 7 99~参考资料 [1]
+    - [7.1 Comprehensive Rust](/99~参考资料/Comprehensive%20Rust/README.md)
       
   - [8 INTRODUCTION](/INTRODUCTION.md)
