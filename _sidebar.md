@@ -96,10 +96,12 @@
           - [4.8.1.1.1 2022~Creating A DLL With Rust](/04~工程实践/跨语言调用/C++/99~参考资料/2022~Creating%20A%20DLL%20With%20Rust.md)
   - [5 05~设计模式](/05~设计模式/README.md)
     
-  - 6 10~实践案例 [1]
-    - [6.1 KV 数据库](/10~实践案例/KV%20数据库/README.md)
+  - [6 09~UI 开发](/09~UI%20开发/README.md)
+    
+  - 7 10~实践案例 [1]
+    - [7.1 KV 数据库](/10~实践案例/KV%20数据库/README.md)
       
-  - 7 99~参考资料 [1]
-    - [7.1 Comprehensive Rust](/99~参考资料/Comprehensive%20Rust/README.md)
+  - 8 99~参考资料 [1]
+    - [8.1 Comprehensive Rust](/99~参考资料/Comprehensive%20Rust/README.md)
       
-  - [8 INTRODUCTION](/INTRODUCTION.md)
+  - [9 INTRODUCTION](/INTRODUCTION.md)
