@@ -151,15 +151,6 @@ Found a 5!
 ```
 当然，我们也可以直接去判断 Option 的属性，譬如它提供了 .is_some() 方法来判断是否为 Some 类型，包括 .is_none() 来判断是否为 None 类型：
 
-```rs
-fn take_fifth(value: Vec<i32>) -> Option<i32> {
-    if value.len() < 4 {
-        None
-    } else {
-        Some(value[4])
-    }
-}
-
 fn main() {
     let new_vec = vec![1, 2];
     let bigger_vec = vec![1, 2, 3, 4, 5];
