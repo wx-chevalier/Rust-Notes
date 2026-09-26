@@ -9,7 +9,7 @@ enum Option<T> {
     None,
     Some(T),
 }
-```rust
+```
 当您拥有一个可能存在或不存在的值时，请使用 Option。当值存在时为 `Some(value)`，当值不存在时仅为 None，这是一个错误代码示例，可以使用 Option 进行改进。
 
 ```rs
@@ -24,7 +24,7 @@ fn main() {
 }
 
 // thread 'main' panicked at 'index out of bounds: the len is 2 but the index is 4', src\main.rs:34:5
-```rust
+```
 Panic 表示程序在问题发生之前已停止。Rust 看到该函数想要一些不可能的事情，然后停止。它“展开堆栈”（从堆栈中取出值），并告诉您“对不起，我不能这样做”。所以现在我们将返回类型从 i32 更改为`Option<i32>`。这意味着“如果有，请给我 Some（i32），如果没有，请给我任何内容”。我们说 i32 是“包装”在 Option 中的，这意味着它在 Option 内部。您必须做一些事情才能获得价值。
 
 ```rs
@@ -44,7 +44,7 @@ fn main() {
 }
 
 None, Some(5)
-```rust
+```
 一个完整的例子如下：
 
 ```rust
@@ -56,7 +56,7 @@ fn find(haystack: &str, needle: char) -> Option<usize> {
     }
     None
 }
-```rust
+```
 `find`在字符串`haystack`中查找`needle`字符，事实上结果会出现两种可能，有（`Some(usize)`)或无（`None`）。
 
 ```rust
@@ -67,7 +67,7 @@ fn main() {
         Some(i) => println!("File extension: {}", &file_name[i+1..]),
     }
 }
-```rust
+```
 Rust 使用模式匹配来处理返回值，调用者必须处理结果为`None`的情况。这往往是一个好的编程习惯，可以减少潜在的 bug。Option 包含一些方法来简化模式匹配，毕竟过多的`match`会使代码变得臃肿，这也是滋生 bug 的原因之一。
 
 # 属性方法
@@ -94,7 +94,7 @@ fn main() {
         take_fifth(bigger_vec).unwrap()
     );
 }
-```rust
+```
 unwrap 的源码如下：
 
 ```rust
@@ -107,7 +107,7 @@ impl<T> Option<T> {
         }
     }
 }
-```rust
+```
 `unwrap` 当遇到 `None` 值时会 panic，如前面所说这不是一个好的工程实践。不过有些时候却非常有用：
 
 - **在例子和简单快速的编码中** 有的时候你只是需要一个小例子或者一个简单的小程序，输入输出已经确定，你根本没必要花太多时间考虑错误处理，使用 `unwrap` 变得非常合适。
@@ -148,7 +148,7 @@ fn main() {
 
 Found a None!
 Found a 5!
-```rust
+```
 当然，我们也可以直接去判断 Option 的属性，譬如它提供了 .is_some() 方法来判断是否为 Some 类型，包括 .is_none() 来判断是否为 None 类型：
 
 ```rs
@@ -177,7 +177,7 @@ fn main() {
 
 We got nothing.
 We got: 5
-```rust
+```
 ## unwrap_or
 
 ```rust
@@ -187,7 +187,7 @@ fn unwrap_or<T>(option: Option<T>, default: T) -> T {
         Some(value) => value,
     }
 }
-```rust
+```
 `unwrap_or`提供了一个默认值`default`，当值为`None`时返回`default`：
 
 ```rust
@@ -195,7 +195,7 @@ fn main() {
     assert_eq!(extension("foo.rs").unwrap_or("rs"), "rs");
     assert_eq!(extension("foo").unwrap_or("rs"), "rs");
 }
-```rust
+```
 ## map
 
 假如我们要在一个字符串中找到文件的扩展名，比如 foo.rs 中的 rs，我们可以这样：
@@ -214,7 +214,7 @@ fn main() {
         Some(ext) =>  assert_eq!(ext, "rs"),
     }
 }
-```rust
+```
 我们可以使用 `map` 简化：
 
 ```rust
@@ -230,7 +230,7 @@ fn map<F, T, A>(option: Option<T>, f: F) -> Option<A> where F: FnOnce(T) -> A {
 fn extension(file_name: &str) -> Option<&str> {
     find(file_name, '.').map(|i| &file_name[i+1..])
 }
-```rust
+```
 `map`如果有值`Some(T)`会执行`f`，反之直接返回`None`。
 
 ## and_then
@@ -243,7 +243,7 @@ fn and_then<F, T, A>(option: Option<T>, f: F) -> Option<A>
         Some(value) => f(value),
     }
 }
-```rust
+```
 看起来 `and_then` 和 `map` 差不多，不过 `map` 只是把值为 `Some(t)` 重新映射了一遍，`and_then` 则会返回另一个 `Option`。如果我们在一个文件路径中找到它的扩展名，这时候就会变得尤为重要：
 
 ```rust
@@ -255,4 +255,4 @@ fn file_name(file_path: &str) -> Option<&str> {
 fn file_path_ext(file_path: &str) -> Option<&str> {
     file_name(file_path).and_then(extension)
 }
-```rust
+```

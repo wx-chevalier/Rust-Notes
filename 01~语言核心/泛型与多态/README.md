@@ -19,7 +19,7 @@ fn return_number(number: i32) -> i32 {
 fn main() {
     let number = return_number(5);
 }
-```rust
+```
 但是，如果您要使用的不仅仅是 i32，该怎么办？您可以为此使用泛型。泛型的意思是“也许是一种类型，也许是另一种类型”。对于泛型，可以使用内部类型的尖括号，如下所示：`<T>` 表示“放入函数中的任何类型”。通常，泛型使用带有一个大写字母（T，U，V 等）的类型，尽管您不必只使用一个字母。
 
 ```rs
@@ -31,7 +31,7 @@ fn return_number<T>(number: T) -> T {
 fn main() {
     let number = return_number(5);
 }
-```rust
+```
 重要的部分是函数名称后面的 `<T>`。没有这个，Rust 会认为 T 是一个具体的（具体=非泛型）类型，例如 String 或 i8。如果我们写出一个类型名，这更容易理解。看看将 T 更改为 MyType 时会发生什么：
 
 ```rs
@@ -39,7 +39,7 @@ fn return_number(number: MyType) -> MyType { // ⚠️
     println!("Here is your number.");
     number
 }
-```rust
+```
 如您所见，MyType 是具体的，而不是通用的。因此，我们需要编写此代码，这样它现在可以工作了：
 
 ```rs
@@ -51,7 +51,7 @@ fn return_number<MyType>(number: MyType) -> MyType {
 fn main() {
     let number = return_number(5);
 }
-```rust
+```
 因此，单个字母 T 用于人类的眼睛，但函数名后面的部分用于编译器的“眼睛”。没有它，它不是通用的。
 
 ## 最大值提取
@@ -73,7 +73,7 @@ fn main() {
 
     println!("The largest number is {}", largest);
 }
-```rust
+```
 这段代码获取一个整型列表，存放在变量 number_list 中。它将列表的第一项放入了变量 largest 中。接着遍历了列表中的所有数字，如果当前值大于 largest 中储存的值，将 largest 替换为这个值。如果当前值小于或者等于目前为止的最大值，largest 保持不变。当列表中所有值都被考虑到之后，largest 将会是最大值，在这里也就是 100。
 
 如果需要在两个不同的列表中寻找最大值，我们可以重复上例中的代码，这样程序中就会存在两段相同逻辑的代码，虽然代码能够执行，但是重复的代码是冗余且容易出错的，并且意味着当更新逻辑时需要修改多处地方的代码。为了消除重复，我们可以创建一层抽象，在这个例子中将表现为一个获取任意整型列表作为参数并对其进行处理的函数。这将增加代码的简洁性并让我们将表达和推导寻找列表中最大值的这个概念与使用这个概念的特定位置相互独立。
@@ -102,7 +102,7 @@ fn main() {
     let result = largest(&number_list);
     println!("The largest number is {}", result);
 }
-```rust
+```
 largest 函数有一个参数 list，它代表会传递给函数的任何具体的 i32 值的 slice。函数定义中的 list 代表任何 &[i32]。当调用 largest 函数时，其代码实际上运行于我们传递的特定值上。如果我们有两个函数，一个寻找一个 i32 值的 slice 中的最大项而另一个寻找 char 值的 slice 中的最大项该怎么办？
 
 ```rs
@@ -129,9 +129,9 @@ fn main() {
     let result = largest(&char_list);
     println!("The largest char is {}", result);
 }
-```rust
+```
 如果想要定义一个 x 和 y 可以有不同类型且仍然是泛型的 Point 结构体，我们可以使用多个泛型类型参数。我们修改 Point 的定义为拥有两个泛型类型 T 和 U。其中字段 x 是 T 类型的，而字段 y 是 U 类型的：
 
 ```rs
 
-```rust
+```

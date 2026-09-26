@@ -8,7 +8,7 @@ let v = vec![0; 10]; // A vector of ten zeroes.
 let v = vec![1, 2, 3, 4, 5];
 
 println!("The third element of v is {}", v[2]);
-```rust
+```
 ```rs
 fn main() {
     println!("{}", "These
@@ -21,4 +21,4 @@ println!("{}", "These\n\
     are\n\
     three lines");
 }
-```rust
+```

@@ -9,7 +9,7 @@ struct，或者 structure，是一个自定义数据类型，允许你命名和�
 ```rs
 struct FileDirectory;
 fn main() { }
-```rust
+```
 下一个是元组结构（Tuple Struct）或未命名的结构。之所以称为“未命名”，是因为您只需要编写类型，而不是变量名。当您需要简单的结构并且不需要记住名称时，元组结构会很好。
 
 ```rs
@@ -19,7 +19,7 @@ fn main() {
     let my_colour = Colour(50, 0, 50); // Make a colour out of RGB (red, green, blue)
     println!("The second part of the colour is: {}", my_colour.1);
 }
-```rust
+```
 第三种类型是命名结构（Named Struct）。这可能是最常见的结构。在此结构中，您可以在 {} 代码块内声明变量名称和类型。
 
 ```rs
@@ -38,7 +38,7 @@ fn main() {
         colour: my_colour
     };
 }
-```rust
+```
 在命名结构中，用逗号分隔变量。对于最后一个变量，您可以添加或不添加逗号。SizeAndColour 在 colour 后有一个逗号：
 
 ```rs
@@ -50,5 +50,5 @@ struct SizeAndColour {
 }
 
 fn main() { }
-```rust
+```
 但您不需要它。但是最好始终使用逗号，因为有时您会更改变量的顺序。

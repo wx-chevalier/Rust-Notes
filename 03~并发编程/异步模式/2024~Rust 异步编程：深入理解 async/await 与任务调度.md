@@ -21,7 +21,7 @@ async fn main() {
     // 调用异步函数
     say_hello().await;
 }
-```rust
+```
 ## 2. await 关键字详解
 
 ### 2.1 await 的本质
@@ -36,7 +36,7 @@ async fn example() {
     let result = async_operation().await;  // 在这里交出执行权
     println!("完成");
 }
-```rust
+```
 当代码遇到 `.await` 时：
 
 1. 如果操作未完成，当前任务暂停执行
@@ -66,7 +66,7 @@ async fn main() {
     // 等待所有任务完成
     let _ = tokio::join!(task1, task2);
 }
-```rust
+```
 ### 3.2 CPU 执行原理
 
 实际上，单个 CPU 核心在同一时刻只能执行一个任务。"并发"是通过快速切换任务实现的：
@@ -109,7 +109,7 @@ async fn main() {
     let result = cpu_task.await.unwrap();
     println!("计算结果: {}", result);
 }
-```rust
+```
 ## 5. 错误处理最佳实践
 
 ### 5.1 避免使用 unwrap()
@@ -126,7 +126,7 @@ let result = match some_async_operation().await {
         return Err(e.into());
     }
 };
-```rust
+```
 ### 5.2 使用 ? 操作符
 
 ```rust
@@ -135,7 +135,7 @@ async fn fetch_data() -> Result<String, Box<dyn std::error::Error>> {
     let text = response.text().await?;
     Ok(text)
 }
-```rust
+```
 ## 6. 实际应用示例
 
 ### 6.1 并发处理多个用户请求
@@ -156,7 +156,7 @@ async fn handle_multiple_users() {
         task.await.unwrap();
     }
 }
-```rust
+```
 ## 7. 性能优化建议
 
 1. **正确区分任务类型**

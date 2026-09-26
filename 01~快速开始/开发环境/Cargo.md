@@ -7,14 +7,14 @@
 ```sh
 # --bin 表示该项目将生成可执行文件，否则表示生成库文件
 $ cargo new hello-rust --bin
-```rust
+```
 `cargo new` 指令会在当前目录下新建了基于 cargo 项目管理的 Rust 项目，我们自动生成了基本运行所必须的所有代码：
 
 ```rs
 fn main() {
     println!("Hello, world!");
 }
-```rust
+```
 然后我们可以使用 `cargo build` 命令进行项目编译，编译完毕后 Cargo 会自动生成如下的文件目录
 
 ```sh
@@ -28,20 +28,20 @@ fn main() {
         ├─examples
         ├─incremental
         └─native
-```rust
+```
 最后使用 `cargo run` 即自动运行生成的代码：
 
 ```sh
 Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
     Running `target\debug\hello-rust.exe`
 Hello, world!
-```rust
+```
 如果我们希望生成发布包，则可以使用 `cargo build --release` 来进行带优化操作的编译：
 
 ```sh
 $ cargo build --release
    Compiling hello-rust v0.1.0 (file:///path/to/project/hello-rust)
-```rust
+```
 对于现有的 Cargo 项目，我们同样可以直接利用 build 指令进行编译：
 
 ```sh
@@ -50,7 +50,7 @@ $ cd rand
 
 $ cargo build
    Compiling rand v0.1.0 (file:///path/to/project/rand)
-```rust
+```
 完整的 Cargo 命令列表如下：
 
 | Command                        | Description                                                                |
@@ -98,7 +98,7 @@ $ cargo build
     └── multi-file-test/
         ├── main.rs
         └── test_module.rs
-```rust
+```
 ## cargo.toml 与 cargo.lock
 
 cargo.toml 和 cargo.lock 文件总是位于项目根目录下。
@@ -128,7 +128,7 @@ version = "0.1.0"
 
 [dependencies]
 libc = "0.2"
-```rust
+```
 这里 package 段落中的 version 字段的值，以及 dependencies 段落中的 libc 字段的值，这些值的写法，都涉及到语义化版本控制的问题。语义化版本控制是用一组简单的规则及条件来约束版本号的配置和增长。这些规则是根据（但不局限于）已经被各种封闭、开放源码软件所广泛使用的惯例所设计。简单来说，语义化版本控制遵循下面这些规则：
 
 - 版本格式：主版本号.次版本号.修订号，版本号递增规则如下：
@@ -183,7 +183,7 @@ license = "..."
 
 # 软件包的非标许可证书对应的文件路径。
 license-file = "..."
-```rust
+```
 # 依赖管理
 
 Cargo 的依赖管理主要依托于 Cargo.toml 与 Cargo.lock 这两个文件，Cargo.toml 文件存储了项目的所有信息；Cargo.lock 则是根据同一项目的 toml 文件生成的项目依赖详细清单文件，类似于 yarn.lock，其可以避免泛版本号带来的依赖版本混乱问题。Cargo 使用了集中式地包管理 [crates.io](https://crates.io/)，我们可以在上面搜索需要的第三方依赖，并将其添加到 Cargo.toml 中
@@ -192,7 +192,7 @@ Cargo 的依赖管理主要依托于 Cargo.toml 与 Cargo.lock 这两个文件�
 [dependencies]
 time = "0.1.12"
 regex = "0.1.41"
-```rust
+```
 Rust 包管理使用 crate 格式的压缩包存储和发布库，托管在 AWS S3 上；国内中科大则是提供了[资源镜像](https://lug.ustc.edu.cn/wiki/mirrors/help/rust-crates)，我们可以在项目根目录的 `.cargo/config` 或者全局的 `$HOME/.cargo/config` 文件中添加如下 Registry 配置
 
 ```toml
@@ -202,7 +202,7 @@ replace-with = 'ustc'
 
 [source.ustc]
 registry = "git://mirrors.ustc.edu.cn/crates.io-index"
-```rust
+```
 与平台相关的依赖定义格式不变，不同的是需要定义在[target]字段下。例如：
 
 ```toml
@@ -243,7 +243,7 @@ native = { path = "native/x86_64" }
 # 此外，[dev-dependencies]段落声明的依赖不会传递给其他依赖本软件包的项目
 [dev-dependencies]
 iron = "0.2"
-```rust
+```
 # 编译目标
 
 Cargo 内置五种编译器调用模板，分别为 dev、release、test、bench、doc，分别用于定义不同类型生成目标时的编译器参数，如果我们自己想改变这些编译模板，可以自己定义相应字段的值，例如（注意：下述例子中列出的值均为此模板字段对应的系统默认值）：
@@ -293,7 +293,7 @@ rpath = false
 lto = false
 debug-assertions = true
 codegen-units = 1
-```rust
+```
 需要注意的是，当调用编译器时，只有位于调用最顶层的软件包的模板文件有效，其他的子软件包或者依赖软件包的模板定义将被顶层软件包的模板覆盖。
 
 ## [features]段落
@@ -332,7 +332,7 @@ jquery = { version = "1.0.2", optional = true }
 uglifier = { version = "1.5.3", optional = true }
 bcrypt = { version = "*", optional = true }
 civet = { version = "*", optional = true }
-```rust
+```
 如果其他软件包要依赖使用上述 awesome 软件包，可以在其描述文件中这样写：
 
 ```toml
@@ -340,7 +340,7 @@ civet = { version = "*", optional = true }
 version = "1.3.5"
 default-features = false # 禁用awesome 的默认features
 features = ["secure-password", "civet"] # 使用此处列举的各项features
-```rust
+```
 使用 features 时需要遵循以下规则：
 
 - feature 名称在本描述文件中不能与出现的软件包名称冲突
@@ -353,7 +353,7 @@ features 的一个重要用途就是，当开发者需要对软件包进行最�
 
 ```rust
 $ cargo build --release --features "shumway pdf"
-```rust
+```
 ## 配置构建目标
 
 所有的诸如[[bin]], [lib], [[bench]], [[test]]以及 [[example]]等字段，均提供了类似的配置，以说明构建目标应该怎样被构建。例如（下述例子中[lib]段落中各字段值均为默认值）：
@@ -387,7 +387,7 @@ plugin = false
 
 # 如果设置为false，`cargo test`将会忽略传递给rustc的--test参数。
 harness = true
-```rust
+```
 # 集成测试用例
 
 cargo 另一个重要的功能，即将软件开发过程中必要且非常重要的测试环节进行集成，并通过代码属性声明或者 toml 文件描述来对测试进行管理。其中，单元测试主要通过在项目代码的测试代码部分前用 `#[test]` 属性来描述，而集成测试，则一般都会通过 toml 文件中的 `[[test]]` 段落进行描述。例如，假设集成测试文件均位于 tests 文件夹下，则 toml 可以这样来写：
@@ -400,7 +400,7 @@ path = "tests/testinit.rs"
 [[test]]
 name = "testtime"
 path = "tests/testtime.rs"
-```rust
+```
 上述例子中，name 字段定义了集成测试的名称，path 字段定义了集成测试文件相对于本 toml 文件的路径。看看，定义集成测试就是如此简单。需要注意的是:
 
 - 如果没有在 Cargo.toml 里定义集成测试的入口，那么 tests 目录(不包括子目录)下的每个 rs 文件被当作集成测试入口.
@@ -418,5 +418,5 @@ path = "examples/timeout.rs"
 [[bin]]
 name = "bin1"
 path = "bin/bin1.rs"
-```rust
+```
 对于'[[example]]'和'[[bin]]'段落中声明的 examples 和 bins，需要通过'cargo run --example NAME'或者'cargo run --bin NAME'来运行，其中 NAME 对应于你在 name 字段中定义的名称。
