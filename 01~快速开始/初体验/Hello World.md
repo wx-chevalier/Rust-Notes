@@ -4,24 +4,21 @@
 
 ```s
 $ curl https://sh.rustup.rs -sSf | sh -s -- --help
-```
-
+```rust
 在 Rust 开发环境中，所有工具都安装到 `%USERPROFILE%\.cargo\bin` 目录，并且您能够在这里找到 Rust 工具链，包括 rustc、cargo 及 rustup。rustup 往往用于版本与工具链管理，rustc 用于编译与运行，cargo 则是负责包管理以及项目的全生命周期管理。Rust 中的 Hello World 如下所示：
 
 ```rs
 fn main() {
     println!("Hello, world!");
 }
-```
-
+```rust
 我们可以通过 rustc 将其编译为可执行程序：
 
 ```s
 $ rustc main.rs
 $ ./main
 Hello, world!
-```
-
+```rust
 # 猜数字游戏
 
 官方入门教程还提供了稍为复杂的[猜数字游戏](https://parg.co/UZE)，也能让我们一窥 Rust 的语法特性
@@ -75,8 +72,7 @@ fn main() {
         }
     }
 }
-```
-
+```rust
 # 简单 Web 服务器
 
 如果想对 Web Server 开发有更深入的了解，可以参考 [nickel.rs](https://github.com/nickel-org/nickel.rs) 去实现自己简单的 Web 服务器。
@@ -92,23 +88,20 @@ fn main() {
 pub fn add_one(x: i32) -> i32 {
     x + 1
 }
-```
-
+```rust
 然后更新 Rust 版本并且添加 wasm32 编译源：
 
 ```rs
 rustup update
 rustup target add wasm32-unknown-unknown --toolchain nightly
 rustc +nightly --target wasm32-unknown-unknown -O --crate-type=cdylib add.rs -o add.big.wasm
-```
-
+```rust
 然后利用 wasm-gc 来减少文件体积：
 
 ```rs
 cargo install --git https://github.com/alexcrichton/wasm-gc
 wasm-gc add.big.wasm add.wasm
-```
-
+```rust
 对应的 JavaScript 部分代码，首先会抓取 add.wasm 模块，然后初始化为 WebAssembly 对象并且执行：
 
 ```rs
@@ -118,8 +111,7 @@ fetch('add.wasm')
 .then(results => {
     alert(results.instance.exports.add_one(41));
 });
-```
-
+```rust
 这里 add.wasm 的可读化格式为：
 
 ```rs
@@ -137,4 +129,4 @@ fetch('add.wasm')
   (export "add_one" (func 0))
   (export "rust_eh_personality" (func 1))
   (data (i32.const 4) "\10\00\10\00"))
-```
+```rust

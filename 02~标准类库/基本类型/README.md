@@ -4,8 +4,7 @@
 
 ```rs
 let guess: u32 = "42".parse().expect("Not a number!");
-```
-
+```rust
 这里如果不添加类型注解，Rust 会显示如下错误，这说明编译器需要我们提供更多信息，来了解我们想要的类型：
 
 ```rs
@@ -17,8 +16,7 @@ error[E0282]: type annotations needed
   |         |
   |         cannot infer type for `_`
   |         consider giving `guess` a type
-```
-
+```rust
 复合类型（Compound types）可以将多个值组合成一个类型。Rust 有两个原生的复合类型：元组（tuple）和数组（array）。
 
 ## Copy types
@@ -38,8 +36,7 @@ fn prints_number(number: i32) { // No return with ->
                              // and we couldn't use it again
     println!("{}", number);
 }
-```
-
+```rust
 # 布尔型
 
 正如其他大部分编程语言一样，Rust 中的布尔类型有两个可能的值：true 和 false。Rust 中的布尔类型使用 bool 表示。例如：
@@ -50,6 +47,5 @@ fn main() {
 
     let f: bool = false; // 显式指定类型注解
 }
-```
-
+```rust
 使用布尔值的主要场景是条件表达式，例如 if 表达式。

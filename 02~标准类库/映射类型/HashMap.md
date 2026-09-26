@@ -21,7 +21,6 @@ fn main() {
     tallinn.population.insert(1851, 24_000);
     tallinn.population.insert(2020, 437_619);
 
-
     for (year, population) in tallinn.population { // The HashMap is HashMap<u32, u32> so it returns a two items each time
         println!("In the year {} the city of {} had a population of {}.", year, tallinn.name, population);
     }
@@ -30,15 +29,13 @@ fn main() {
 In the year 1372 the city of Tallinn had a population of 3250.
 In the year 2020 the city of Tallinn had a population of 437619.
 In the year 1851 the city of Tallinn had a population of 24000.
-```
-
+```rust
 HashMap 要求一个可哈希（实现 Hash trait）的 Key 类型，和一个编译时知道大小的 Value 类型。
 同时，Rust 还要求你的 Key 类型必须是可比较的，在 Rust 中，你可以为你的类型轻易的加上编译器属性：
 
 ```rust
 #[derive(PartialEq, Eq, Hash)]
-```
-
+```rust
 这样，即可将你的类型转换成一个可以作为 Hash 的 Key 的类型。但是，如果你想要自己实现`Hash`这个 trait 的话，你需要谨记两点：
 
 - 1. 如果 Key1==Key2 ,那么一定有 Hash(Key1) == Hash(Key2)
@@ -79,8 +76,7 @@ println!("那么，所有人呢？");
 for (name, location) in &come_from {
     println!("{}来自: {}", name, location);
 }
-```
-
+```rust
 ## Entry
 
 Rust 为我们提供了一个名叫 `entry` 的 api，它很有意思，和 Python 相比，我们不需要在一次迭代的时候二次访问原 map，只需要借用 entry 出来的 Entry 类型（这个类型持有原有 HashMap 的引用）即可对原数据进行修改。就语法来说，毫无疑问 Rust 在这个方面更加直观和具体。
@@ -99,8 +95,7 @@ assert_eq!(letters[&'s'], 2);
 assert_eq!(letters[&'t'], 3);
 assert_eq!(letters[&'u'], 1);
 assert_eq!(letters.get(&'y'), None);
-```
-
+```rust
 # BTreeMap
 
 如果您希望可以对 HashMap 进行排序，则可以使用 BTreeMap。实际上它们彼此非常相似，因此我们可以快速将 HashMap 更改为 BTreeMap 进行查看。您可以看到它几乎是相同的代码。
@@ -132,4 +127,4 @@ fn main() {
 In the year 1372 the city of Tallinn had a population of 3250.
 In the year 1851 the city of Tallinn had a population of 24000.
 In the year 2020 the city of Tallinn had a population of 437619.
-```
+```rust

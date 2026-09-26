@@ -34,8 +34,7 @@ impl HasArea for Square {
 fn print_area<T: HasArea>(shape: T) {
     println!("This shape has an area of {}", shape.area());
 }
-```
-
+```rust
 其中函数 `print_area()` 中的泛型参数 `T` 被添加了一个名为 `HasArea` 的特性约束 (trait constraint)，用以确保任何实现了 `HasArea` 的类型将拥有一个 `.area()` 方法。
 
 ## Trait 继承
@@ -48,8 +47,7 @@ trait Foo {
 trait FooBar : Foo {
     fn foobar(&self);
 }
-```
-
+```rust
 这样 `FooBar` 的实现者也要同时实现 `Foo`：
 
 ```rust
@@ -62,8 +60,7 @@ impl Foo for Baz {
 impl FooBar for Baz {
     fn foobar(&self) { println!("foobar"); }
 }
-```
-
+```rust
 ## derive 属性
 
 Rust 提供了一个属性`derive`来自动实现一些 trait，这样可以避免重复繁琐地实现他们，能被`derive`使用的 trait 包括：`Clone`, `Copy`, `Debug`, `Default`, `Eq`, `Hash`, `Ord`, `PartialEq`, `PartialOrd`
@@ -75,8 +72,7 @@ struct Foo;
 fn main() {
     println!("{:?}", Foo);
 }
-```
-
+```rust
 # 多 Trait 约束
 
 如果需要多个特性限定 (multiple trait bounds)，可以使用`+`：
@@ -98,8 +94,7 @@ fn bar<T, K>(x: T, y: K)
     y.clone();
     println!("{:?}", y);
 }
-```
-
+```rust
 关于实现特性的几条限制：
 
 - 如果一个特性不在当前作用域内，它就不能被实现。
@@ -142,8 +137,7 @@ impl FooBar for Baz {
     fn foobar(&self) { println!("foobar"); }
 }
 
-```
-
+```rust
 如果两个不同特性的方法具有相同的名称，可以使用通用函数调用语法 (universal function call syntax)：
 
 ```rs
@@ -153,8 +147,7 @@ Trait::method(args);
 // expanded form
 <Type as Trait>::method(args);
 
-```
-
+```rust
 # 泛型
 
 特性也可以接受泛型参数。但是，往往更好的处理方式是使用关联类型 (associated type)：
@@ -204,4 +197,4 @@ impl Graph for SimpleGraph {
 
 let graph = SimpleGraph;
 let object = Box::new(graph) as Box<Graph<N=Node, E=Edge>>;
-```
+```rust

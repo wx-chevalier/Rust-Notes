@@ -26,8 +26,7 @@ fn value_in_cents(coin: Coin) -> u8 {
         Coin::Quarter => 25,
     }
 }
-```
-
+```rust
 其中 | 用于匹配多个值，...匹配一个范围 (包含最后一个值)，并且 `_` 在这里是必须的，因为 match 强制进行穷尽性检查 (exhaustiveness checking)，必须覆盖所有的可能值。
 
 ## 通配符
@@ -51,8 +50,7 @@ error[E0004]: non-exhaustive patterns: `3u8..=std::u8::MAX` not covered
 3 |     match my_number {
   |           ^^^^^^^^^ pattern `3u8..=std::u8::MAX` not covered
 
-```
-
+```rust
 Rust 也提供了一个模式用于不想列举出所有可能值的场景。例如，u8 可以拥有 0 到 255 的有效的值，如果我们只关心 1、3、5 和 7 这几个值，就并不想必须列出 0、2、4、6、8、9 一直到 255 的值。所幸我们不必这么做：可以使用特殊的模式 `_` 替代：
 
 ```rs
@@ -65,8 +63,7 @@ fn main() {
         _ => println!("It's some other number"),
     }
 }
-```
-
+```rust
 `_` 模式会匹配所有的值。通过将其放置于其他分支之后，`_` 将会匹配所有之前没有指定的可能的值。`()` 就是 unit 值，所以 `_` 的情况什么也不会发生。因此，可以说我们想要对 `_` 通配符之前没有列出的所有可能的值不做任何处理。
 
 ## 返回值
@@ -82,8 +79,7 @@ fn main() {
         _ => 2,
     };
 }
-```
-
+```rust
 匹配项必须返回相同的类型。所以你不能这样做：
 
 ```rs
@@ -110,8 +106,7 @@ error[E0308]: `match` arms have incompatible types
 fn main() {
     let some_variable = if my_number == 10 { 8 } else { "something else "}; // ⚠️
 }
-```
-
+```rust
 但这有效，因为您有一个不同的 let 语句。
 
 ```rs
@@ -124,8 +119,7 @@ fn main() {
         let some_variable = "Something else";
     }
 }
-```
-
+```rust
 # 匹配 Option<T>
 
 我们在之前的部分中使用 Option<T> 时，是为了从 Some 中取出其内部的 T 值；我们还可以像处理 Coin 枚举那样使用 match 处理 Option<T>！只不过这回比较的不再是硬币，而是 Option<T> 的成员，但 match 表达式的工作方式保持不变。比如我们想要编写一个函数，它获取一个 `Option<i32>`，如果其中含有一个值，将其加一。如果其中没有值，函数应该返回 None 值，而不尝试执行任何操作。
@@ -141,28 +135,24 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
 let five = Some(5);
 let six = plus_one(five);
 let none = plus_one(None);
-```
-
+```rust
 让我们更仔细地检查 `plus_one` 的第一行操作。当调用 `plus_one(five)` 时，`plus_one` 函数体中的 `x` 将会是值 `Some(5)`。接着将其与每个分支比较。
 
 ```rust
 None => None,
-```
-
+```rust
 值 `Some(5)` 并不匹配模式 `None`，所以继续进行下一个分支。
 
 ```rust
 Some(i) => Some(i + 1),
-```
-
+```rust
 `Some(5)` 与 `Some(i)` 匹配吗？当然匹配！它们是相同的成员。`i` 绑定了 `Some` 中包含的值，所以 `i` 的值是 `5`。接着匹配分支的代码被执行，所以我们将 `i` 的值加一并返回一个含有值 `6` 的新 `Some`。
 
 接着考虑下示例 6-5 中 `plus_one` 的第二个调用，这里 `x` 是 `None`。我们进入 `match` 并与第一个分支相比较。
 
 ```rust
 None => None,
-```
-
+```rust
 匹配上了！这里没有值来加一，所以程序结束并返回 `=>` 右侧的值 `None`，因为第一个分支就匹配到了，其他的分支将不再比较。将 `match` 与枚举相结合在很多场景中都是有用的。你会在 Rust 代码中看到很多这样的模式：`match` 一个枚举，绑定其中的值到一个变量，接着根据其值执行代码。这在一开始有点复杂，不过一旦习惯了，你会希望所有语言都拥有它！这一直是用户的最爱。
 
 # 元组匹配
@@ -181,8 +171,7 @@ fn main() {
         _ => println!("Not sure what the weather is."),
     }
 }
-```
-
+```rust
 match 表达式也可以用于解构元组：
 
 ```rs
@@ -193,8 +182,7 @@ match pair {
     (x, 0) => println!("`x` is `{:?}` and y is `0`", x),
     _ => println!("It doesn't matter what they are"),
 }
-```
-
+```rust
 您甚至可以在 match 中放入 if。
 
 ```rs
@@ -209,8 +197,7 @@ fn main() {
     }
 }
 
-```
-
+```rust
 您可以在匹配中任意多次使用 `_`。在这种颜色匹配中，我们有三个，但一次只能检查一个。
 
 ```rs
@@ -237,8 +224,7 @@ fn main() {
 Not much blue
 Each colour has at least 10
 Not much green
-```
-
+```rust
 这也显示了 match 语句的工作方式，因为在第一个示例中，它仅打印了不多的蓝色。但是首先也没有太多绿色。match 语句在找到匹配项时总是停止，并且不检查其余部分。这是一个很好的代码示例，可以很好地编译，但不是您想要的代码 match 的这种解构同样适用于结构体或者枚举。如果有必要，还可以使用 .. 来忽略域或者数据：
 
 ```rs
@@ -266,8 +252,7 @@ match x {
     OptionalInt::Value(..) => println!("Got an int!"),
     OptionalInt::Missing => println!("No such luck."),
 }
-```
-
+```rust
 # 变量绑定
 
 您也可以在需要时使用 @ 来使用匹配表达式的值。在此示例中，我们在函数中匹配了 i32 输入。如果是 4 或 13，我们想在 println 中使用该数字。否则，我们不需要使用它。
@@ -293,8 +278,7 @@ match x {
     e @ 1 ... 5 => println!("got a range element {}", e),
     _ => println!("anything"),
 }
-```
-
+```rust
 使用 ref 关键字来得到一个引用：
 
 ```rs
@@ -311,4 +295,4 @@ match y {
     ref mut mr => println!("Got a mutable reference to {}", mr),
 }
 
-```
+```rust

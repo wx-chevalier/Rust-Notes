@@ -25,8 +25,7 @@ fn main() {
     my_vec.push(name2);
 }
 
-```
-
+```rust
 或者，您可以只声明类型。
 
 ```rs
@@ -34,24 +33,21 @@ fn main() {
     let mut my_vec: Vec<String> = Vec::new(); // The compiler knows the type
                                               // so there is no error.
 }
-```
-
+```rust
 您可以看到向量中的项目必须具有相同的类型。创建向量的另一种简单方法是使用 vec！宏。它看起来像数组声明，但是具有 vec！在它前面。
 
 ```rs
 fn main() {
     let mut my_vec = vec![8, 10, 10];
 }
-```
-
+```rust
 类型是 `Vec<i32>`。您称它为 i32 的 vec。`Vec<String>`是字符串 vec，`Vec<Vec<String>>`是字符串 vec 的 vec。
 
 因为 Vec 实现了`FromIterator`这个 trait，因此，借助 collect，我们能将任意一个迭代器转换为 Vec。
 
 ```rust
 let v: Vec<_> = (1..5).collect();
-```
-
+```rust
 ## 空间分配
 
 因为 vec 比数组要慢，所以我们可以使用一些方法使其更快。vec 具有容量，这意味着赋予向量的空间。如果添加的向量多于其容量，它将使容量增加一倍，并将项目复制到新空间中。这称为重新分配。
@@ -69,8 +65,7 @@ fn main() {
     num_vec.push('a'); // add one more // Now we have 5 elements
     println!("{}", num_vec.capacity()); // Now capacity is 8
 }
-```
-
+```rust
 因此，此向量具有三个重新分配：1 到 2，2 到 4 和 4 到 8。我们可以使其更快：
 
 ```rs
@@ -86,8 +81,7 @@ fn main() {
     num_vec.push('a'); // add one more // Now we have 5 elements
     println!("{}", num_vec.capacity()); // Still 8
 }
-```
-
+```rust
 此向量具有 0 重新分配，更好。因此，如果您认为自己知道需要多少元素，可以使用 `Vec::with_capacity()` 使其更快。您还记得可以使用 .into() 将 ＆str 转换为字符串。您也可以使用它来将数组制成 Vec。您必须告诉 .into() 您想要一个 Vec，但不必选择 Vec 的类型。如果您不想选择，则可以编写 `Vec <_>`。
 
 ```rs
@@ -96,8 +90,7 @@ fn main() {
     let my_vec2: Vec<_> = [9, 0, 10].into(); // Vec<_> means "choose the Vec type for me"
                                              // Rust will choose Vec<i32>
 }
-```
-
+```rust
 # 访问与修改
 
 ## 随机访问
@@ -109,8 +102,7 @@ fn main() {
 ```rust
 let a = vec![1, 2, 3];
 assert_eq!(a[1usize], 2);
-```
-
+```rust
 那么，Rust 中有没有安全的下标访问机制呢？答案是当然有：—— `.get(n: usize)`（`.get_mut(n: usize)`）函数。
 对于一个数组，这个函数返回一个`Option<&T>` (`Option<&mut T>`)，当 Option==None 的时候，即下标越界，其他情况下，我们能安全的获得一个 Vec 里面元素的引用。
 
@@ -118,8 +110,7 @@ assert_eq!(a[1usize], 2);
 let v =vec![1, 2, 3];
 assert_eq!(v.get(1), Some(&2));
 assert_eq!(v.get(3), None);
-```
-
+```rust
 ## 迭代器
 
 对于一个可变数组，Rust 提供了一种简单的遍历形式—— for 循环。
@@ -130,8 +121,7 @@ let v = vec![1, 2, 3];
 for i in &v { .. } // 获得引用
 for i in &mut v { .. } // 获得可变引用
 for i in v { .. } // 获得所有权，注意此时 Vec 的属主将会被转移！！
-```
-
+```rust
 但是，这么写很容易出现多层`for`循环嵌套，因此，`Vec`提供了一个`into_iter()`方法，能显式地将自己转换成一个迭代器。然而迭代器怎么用呢？我们下一章将会详细说明。
 
 ## 切片
@@ -150,4 +140,4 @@ start at two: {:?}
 end at five: {:?}
 everything: {:?}", three_to_five, start_at_two, end_at_five, everything);
 }
-```
+```rust

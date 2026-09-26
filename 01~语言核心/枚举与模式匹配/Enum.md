@@ -14,8 +14,7 @@ enum ThingsInTheSky {
 }
 
 fn main() { }
-```
-
+```rust
 这是一个枚举，因为您可以看到太阳或星星：您必须选择一个，这些称为 variants。
 
 ```rs
@@ -46,8 +45,7 @@ fn main() {
     let skystate = create_skystate(time); // create_skystate returns a ThingsInTheSky
     check_skystate(&skystate); // Give it a reference so it can read the variable skystate
 }
-```
-
+```rust
 # 整数值
 
 枚举的一部分也可以转换为整数。Rust 为枚举的每个分支赋予一个以 0 开头的数字。如果枚举中没有任何其他数据，则可以使用该数字。
@@ -72,8 +70,7 @@ fn main() {
 1
 2
 3
-```
-
+```rust
 您可以根据需要给它一个不同的数字，可以以相同的方式使用它。只需在要添加数字的手臂上添加=和您的数字即可。您不必全力以赴。但是，如果您不这样做，Rust 只会从手臂添加 1 来给它一个数字。
 
 ```rs
@@ -103,8 +100,7 @@ Not the biggest star.
 This is a good-sized star.
 This is a good-sized star.
 What about DeadStar? It's the number 1001.
-```
-
+```rust
 # 自定义值
 
 您也可以将数据添加到枚举。
@@ -134,8 +130,7 @@ fn main() {
     let skystate = create_skystate(time); // create_skystate returns a ThingsInTheSky
     check_skystate(&skystate); // Give it a reference so it can read the variable skystate
 }
-```
-
+```rust
 # 多类型使用
 
 您知道，Vec，数组等中的数据结构都需要相同的类型（只有元组不同）。但是您实际上可以使用一个枚举来放入不同的类型。想象一下，我们想要一个带有 u32 或 i32 的 Vec。当然，您可以制作一个 `Vec<(u32, i32)>`（一个带有（u32，i32）元组的 vec），但是我们只想要一个。因此，您可以在此处使用枚举。这是一个简单的示例：
@@ -147,8 +142,7 @@ enum Number {
 }
 
 fn main() { }
-```
-
+```rust
 因此，有两种变体：内置 u32 的 U32 变体和内置 i32 的 I32 变体。U32 和 I32 只是我们做的名字。他们可能是 UThirtyTwo 或 IThirtyTwo 或其他任何东西。现在，如果将它们放入 Vec 中，我们只有一个 `Vec<Number>`，并且编译器很高兴。因为它是一个枚举，所以您必须选择一个。我们将使用 `.is_positive()` 方法进行选择。如果为 true，则选择 U32；如果为 false，则选择 I32。
 
 ```rs
@@ -179,8 +173,7 @@ fn main() {
 
 It's a i32 with the value -800
 It's a u32 with the value 8
-```
-
+```rust
 基于多类型值的特性，我们有时候也可以在 Enum 中使用出类似泛型的功效：
 
 ```rs
@@ -219,4 +212,4 @@ fn main() {
     }
 }
 
-```
+```rust

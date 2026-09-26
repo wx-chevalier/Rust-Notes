@@ -12,8 +12,7 @@ fn main() { // This program will never stop
 
     }
 }
-```
-
+```rust
 因此，让我们告诉编译器何时会中断。
 
 ```rs
@@ -33,8 +32,7 @@ The counter is now: 2
 The counter is now: 3
 The counter is now: 4
 The counter is now: 5
-```
-
+```rust
 ## loop 命名
 
 如果循环中有一个循环，则可以给它们命名。使用名称，您可以告诉 Rust 中断哪个循环。使用 `'`（称为“刻度”）和 `:` 为其命名：
@@ -61,8 +59,7 @@ fn main() {
         }
     }
 }
-```
-
+```rust
 ## 从循环返回
 
 您还可以使用 break 返回值。您可以在 break 后立即写该值，并使用 `;`。这是一个带有循环和中断的示例，为 my_number 提供值。
@@ -78,8 +75,7 @@ fn main() {
     };
     println!("{}", my_number);
 }
-```
-
+```rust
 在循环之前，我们声明了一个名为 counter 的变量并初始化为 0。接着声明了一个名为 result 来存放循环的返回值。在循环的每一次迭代中，我们将 counter 变量加 1，接着检查计数是否等于 10。当相等时，使用 break 关键字返回值 `counter * 2`。循环之后，我们通过分号结束赋值给 result 的语句。最后打印出 result 的值，也就是 20。
 
 # while
@@ -95,4 +91,4 @@ fn main() {
         println!("The counter is now: {}", counter);
     }
 }
-```
+```rust

@@ -33,8 +33,7 @@ my-project
 ├── Cargo.toml
 └── src
     └── main.rs
-```
-
+```rust
 创建类库包(library package)
 
 ```text
@@ -45,8 +44,7 @@ my-lib
 ├── Cargo.toml
 └── src
     └── lib.rs
-```
-
+```rust
 默认, 一个箱(crate):
 
 - src/main.rs 是二进制箱(binary crate)的根文件, 该箱(crate)与包(package)同名

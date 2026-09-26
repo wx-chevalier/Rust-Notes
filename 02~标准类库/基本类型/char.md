@@ -14,8 +14,7 @@ fn main() {
 2
 3
 4
-```
-
+```rust
 您可以看到 `a` 是一个字节，德语 `ß` 是两个字节，日本 `国` 字是三个字节，古埃及语 `𓅱` 是 4 个字节。
 
 ```rust
@@ -25,8 +24,7 @@ fn main() {
     let slice2 = "안녕!"; // Korean for "hi"
     println!("Slice2 is {} bytes.", slice2.len());
 }
-```
-
+```rust
 slice 的长度为六个字符和六个字节，而 slice2 的长度为三个字符和七个字节。char 需要以任何语言适合任何字符，因此它是 4 个字节长。如果 `.len()` 以字节为单位提供大小，那么以字符为单位的大小呢？稍后我们将学习这些方法，但是您只需记住 `.chars().count()` 即可完成。
 
 ```rust
@@ -39,4 +37,4 @@ fn main() {
 
 Slice is 6 characters.
 Slice2 is 3 characters.
-```
+```rust

@@ -6,8 +6,7 @@
 fn main() {
     let a = [1, 2, 3, 4, 5];
 }
-```
-
+```rust
 ## 数组类型
 
 数组的类型为：`[type; number]`。例如，`["One", "Two"]` 的类型为 `[＆str; 2]`。这意味着即使这两个数组也具有不同的类型：
@@ -21,8 +20,7 @@ fn main() {
     let b: [u8;3] = [8, 6, 5];
     print!("{}", a[0]);
 }
-```
-
+```rust
 一个很好的技巧：要知道变量的类型，可以通过给出错误的指令来“询问”编译器。例如：
 
 ```rs
@@ -48,8 +46,7 @@ error[E0308]: mismatched types
   |         ^^   -------- this expression has type `[&str; 5]`
   |         |
   |         expected array `[&str; 5]`, found `()`
-```
-
+```rust
 如果要使用具有相同值的数组，则可以这样声明：
 
 ```rs
@@ -59,27 +56,23 @@ fn main() {
 }
 
 ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]
-```
-
+```rust
 此方法经常用于创建缓冲区。例如，让 `mut buffer = [0; 640]` 创建一个 640 个零的数组。然后我们可以将零更改为其他数字以添加数据。当你想要在栈（stack）而不是在堆（heap）上为数据分配空间，或者是想要确保总是有固定数量的元素时，数组非常有用。但是数组并不如 vector 类型灵活。vector 类型是标准库提供的一个 允许 增长和缩小长度的类似数组的集合类型。当不确定是应该使用数组还是 vector 的时候，你可能应该使用 vector。一个你可能想要使用数组而不是 vector 的例子是，当程序需要知道一年中月份的名字时。程序不大可能会去增加或减少月份。这时你可以使用数组，因为我们知道它总是包含 12 个元素：
 
 ```rs
 let months = ["January", "February", "March", "April", "May", "June", "July",
               "August", "September", "October", "November", "December"];
-```
-
+```rust
 可以像这样编写数组的类型：在方括号中包含每个元素的类型，后跟分号，再后跟数组元素的数量。
 
 ```rust
 let a: [i32; 5] = [1, 2, 3, 4, 5];
-```
-
+```rust
 这里，`i32` 是每个元素的类型。分号之后，数字 `5` 表明该数组包含五个元素。以这种方式编写数组的类型看起来类似于初始化数组的另一种语法：如果要为每个元素创建包含相同值的数组，可以指定初始值，后跟分号，然后在方括号中指定数组的长度，如下所示：
 
 ```rust
 let a = [3; 5];
-```
-
+```rust
 变量名为 `a` 的数组将包含 `5` 个元素，这些元素的值最初都将被设置为 `3`。这种写法与 `let a = [3, 3, 3, 3, 3];` 效果相同，但更简洁。
 
 # 数组访问
@@ -91,8 +84,7 @@ fn main() {
     let my_numbers = [0, 10, -20];
     println!("{}", my_numbers[1]); // prints 10
 }
-```
-
+```rust
 ## 无效的数组元素访问
 
 如果我们访问数组结尾之后的元素会发生什么呢？比如你将上面的例子改成下面这样，这可以编译通过，不过在运行时会因错误而退出：
@@ -114,8 +106,7 @@ $ cargo run
 thread 'main' panicked at 'index out of bounds: the len is 5 but the index is
  10', src/main.rs:5:19
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
-```
-
+```rust
 编译并没有产生任何错误，不过程序会出现一个 运行时（runtime）错误并且不会成功退出。当尝试用索引访问一个元素时，Rust 会检查指定的索引是否小于数组的长度。如果索引超出了数组长度，Rust 会 panic，这是 Rust 术语，它用于程序因为错误而退出的情况。
 
 # 数组切片
@@ -136,8 +127,7 @@ start at two: {:?}
 end at five: {:?}
 everything: {:?}", three_to_five, start_at_two, end_at_five, everything);
 }
-```
-
+```rust
 因此，`[0..2]` 表示第一个索引和第二个索引（0 和 1）。或者，您可以将其称为“零和第一”索引。它没有第三项，即索引 2。您也可以有一个包含范围，这也包括最后一个数字。为此，请添加 = 以编写 `..=` 而不是 `..`。因此，如果需要第一，第二和第三项，可以写 `[0..=2]` 代替 `[0..2]`。
 
 # 数组变换
@@ -152,8 +142,7 @@ everything: {:?}", three_to_five, start_at_two, end_at_five, everything);
 
 ```rust
 let v = (1..20).collect(); //编译通不过的！
-```
-
+```rust
 尝试运行上面的代码，却发现编译器并不让你通过。因为你没指定类型！指定什么类型呢？原来 collect 只知道将迭代器收集到一个实现了 `FromIterator` 的类型中去，但是，事实上实现这个 trait 的类型有很多（Vec, HashMap 等），因此，collect 没有一个上下文来判断应该将 v 按照什么样的方式收集！！
 
 要解决这个问题，我们有两种解决办法：
@@ -162,28 +151,24 @@ let v = (1..20).collect(); //编译通不过的！
 
 ```rust
 let v: Vec<_> = (1..20).collect();
-```
-
+```rust
 2. 显式地指定`collect`调用时的类型：
 
 ```rust
 let v = (1..20).collect::<Vec<_>>();
-```
-
+```rust
 当然，一个迭代器中还存在其他的消费者，比如取第几个值所用的 `.nth()`函数，还有用来查找值的 `.find()` 函数，调用下一个值的`next()`函数等等，这里限于篇幅我们不能一一介绍。所以，下面我们只介绍另一个比较常用的消费者—— `fold` 。当然了，提起 Rust 里的名字你可能没啥感觉，其实，`fold`函数，正是大名鼎鼎的 MapReduce 中的 Reduce 函数(稍微有点区别就是这个 Reduce 是带初始值的)。
 
 `fold`函数的形式如下：
 
 ```rust
 fold(base, |accumulator, element| .. )
-```
-
+```rust
 我们可以写成如下例子：
 
 ```rust
 let m = (1..20).fold(1u64, |mul, x| mul*x);
-```
-
+```rust
 需要注意的是，`fold` 的输出结果的类型，最终是和 `base` 的类型是一致的（如果 `base` 的类型没指定，那么可以根据前面 `m` 的类型进行反推，除非 `m` 的类型也未指定），也就是说，一旦我们将上面代码中的 `base` 从 `1u64` 改成 `1`，那么这行代码最终将会因为数据溢出而崩溃！
 
 ## map
@@ -195,23 +180,20 @@ let m = (1..20).fold(1u64, |mul, x| mul*x);
 
 ```rust
 (1..20).map(|x| x+1);
-```
-
+```rust
 上面的代码展示了一个“迭代器所有元素的自加一”操作，但是，如果你尝试编译这段代码，编译器会给你提示：
 
-```
+```rust
 warning: unused result which must be used: iterator adaptors are lazy and
          do nothing unless consumed, #[warn(unused_must_use)] on by default
 (1..20).map(|x| x + 1);
  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-```
-
+```rust
 如上所示，所有的适配器，都是惰性求值的，也就是说，除非你调用一个消费者，不然，你的操作，永远也不会被调用到。现在，我们知道了 `map`，以及 `filter` 接受一个闭包函数，返回一个布尔值，返回 `true` 的时候表示保留，`false` 丢弃。
 
 ```rust
 let v: Vec<_> = (1..20).filter(|x| x%2 == 0).collect();
-```
-
+```rust
 以上代码表示筛选出所有的偶数。
 
 ## skip 和 take
@@ -231,8 +213,7 @@ let v_skip: Vec<_> = v.iter()
     .skip(2)
     .collect();
 assert_eq!(v_skip, vec![3, 4, 5, 6]);
-```
-
+```rust
 ### zip 和 enumerate 的恩怨情仇
 
 `zip` 是一个适配器，他的作用就是将两个迭代器的内容压缩到一起，形成 `Iterator<Item=(ValueFromA, ValueFromB)>` 这样的新的迭代器；
@@ -244,8 +225,7 @@ let score_map: HashMap<_, _> = names.iter()
     .zip(scores.iter())
     .collect();
 println!("{:?}", score_map);
-```
-
+```rust
 而 `enumerate`, 熟悉的 Python 的同学又叫了：Python 里也有！对的，作用也是一样的，就是把迭代器的下标显示出来，即：
 
 ```rust
@@ -261,8 +241,7 @@ let val = v.iter()
     .fold(0u64, |sum, acm| sum + acm);
 
 println!("{}", val);
-```
-
+```rust
 ## 一系列查找函数
 
 Rust 的迭代器有一系列的查找函数，比如：
